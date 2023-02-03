@@ -82,3 +82,5 @@ expose("_Retrieve_Previous_Results","_Retrieve_Previous_Results")
 
 
 app.mount("/transformer-chatbot", StaticFiles(directory="app/public/transformer-chatbot/dist"), name="static")
+
+#ping
