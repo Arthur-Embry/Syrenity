@@ -26,15 +26,15 @@ jobs:
     # Build the Docker image
     - name: Build & Publish
       run: |
-        gcloud config set project Syrenity
+        gcloud config set project syrenity
         # Use a different variable for the image name
-        gcloud builds submit --tag gcr.io/Syrenity/syrenity-image
+        gcloud builds submit --tag gcr.io/syrenity/syrenity-image
         gcloud config set run/region us-central1
       
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
-        gcloud run deploy actions-workflow-manager --image gcr.io/Syrenity/syrenity-image \
+        gcloud run deploy actions-workflow-manager --image gcr.io/syrenity/syrenity-image \
         --platform managed \
         --allow-unauthenticated \
         --memory 512M
