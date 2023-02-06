@@ -6,13 +6,10 @@ import os
 import types
 import re
 import markdown
+os.environ["OPENAI_API_KEY"]="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"
 
 description = """
 Syrenity API helps you do awesome stuff.
-
-## Notes
-
-
 
 ## Notes
 An API can be a great way to give users access to the deep learning powered diary program. This API can provide users with the ability to access the program from any location. Additionally, the API will allow users to easily integrate the diary program into their existing applications or websites. This can be especially useful for applications or websites that are already using deep learning, as the API will enable easier integration. With the API in place, users can quickly start building their own applications and websites with the diary program and its deep learning powered features.

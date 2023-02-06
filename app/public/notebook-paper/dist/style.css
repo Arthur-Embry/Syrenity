@@ -83,3 +83,18 @@ body {
   font-size: 18px;
   cursor: pointer;
 }
+
+.submit-bias {
+  position: absolute;
+  width: 200px;
+  top: calc( 50% + 225px );
+  left: calc(30% + 125px);
+  transform: translateX(-120%);
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid;
+  border-color: steelblue;
+  border-radius: 20px;
+  font-size: 18px;
+  cursor: text;
+}
