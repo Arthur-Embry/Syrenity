@@ -1,7 +1,7 @@
 The MIT License (MIT)
 
-Copyright (c) 2023 Arthur (https://codepen.io/ArthurOnCodePen/pen/vYjJRKM)
-Fork of an original work Transformer Chatbot (https://codepen.io/ArthurOnCodePen/pen/vYjJRKM)
+Copyright (c) 2023 Arthur (https://codepen.io/ArthurOnCodePen/pen/WNKmKxO)
+Fork of an original work Notebook Paper (https://codepen.io/ArthurOnCodePen/pen/WNKmKxO)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

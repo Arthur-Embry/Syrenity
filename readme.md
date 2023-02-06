@@ -8,7 +8,7 @@ overview here
 
 ## Quickstart
 
-Pushing to main triggers a production build with an endpoint at the [cloud run url](https://actions-workflow-manager-l4uqzynkhq-uc.a.run.app/redoc).
+Pushing to main triggers a production build with an endpoint at the [cloud run url](https://actions_workflow_url).
 
 This doubles as a target for redocs self documentation, so feel free to reference it at any time. It's live and usually stable
 
