@@ -18,6 +18,14 @@ jobs:
         service_account_key: ${{ secrets.GCP_CREDENTIALS }}
         export_default_credentials: true
 
+    # Create env file for deployment and print file structure
+    - name: Create env file
+      run: |
+        touch app.env
+        echo OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} > app.env
+        cat app.env
+
+
     # Configure Docker with Credentials
     - name: Configure Docker
       run: |
@@ -28,9 +36,7 @@ jobs:
       run: |
         gcloud config set project syrenity
         # Use a different variable for the image name
-        docker build -t gcr.io/syrenity/syrenity-image --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} .
-        gcloud auth configure-docker
-        docker push gcr.io/syrenity/syrenity-image
+        gcloud builds submit --tag gcr.io/syrenity/syrenity-image
         gcloud config set run/region us-central1
       
     # Deploy the Docker image to the GKE cluster
