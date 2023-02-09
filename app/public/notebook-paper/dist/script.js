@@ -11,7 +11,7 @@ document.querySelector(".submit-button").addEventListener("click", async functio
     var extract_bias = document.querySelector('.extraction-bias').value
     console.log(extract_bias)
     res= await biased_extract({context: text, bias: extract_bias})
-    document.querySelector('.paper-2 .text').innerHTML+="<h3>"+extract_bias+"</h3>"
+    document.querySelector('.paper-2 .text').innerHTML+="<h3>"+extract_bias+":</h3>"
     document.querySelector('.paper-2 .text').innerHTML+="<p>"+res+"</p>"
     // get the value of the input with class "submit-bias"
     var bias = document.querySelector('.submit-bias').value;
