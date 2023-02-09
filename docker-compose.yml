@@ -6,4 +6,3 @@ services:
       - "5000:8080"
     volumes:
       - .:/code
-      - ./app.env:/code/app.env

@@ -10,7 +10,7 @@ import dotenv
 
 a="sk-3BV6vR9peyW9Wjh8KMksT3Blbk"
 b="FJqpX2tq8j9weezb4RLJhM"
-os.environ["OPENAI_API_KEY"]=a+b
+#os.environ["OPENAI_API_KEY"]=a+b
 
 #load environment variables
 for i in os.listdir(os.getcwd()):
@@ -141,3 +141,4 @@ app.description=description.replace("## Pages","## Pages\n"+pages_string)
 @app.get("/read_root")
 def read_root():
     return {"root": os.getcwd(), "root code": str(os.listdir(os.getcwd()))}
+
