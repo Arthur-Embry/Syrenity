@@ -157,9 +157,13 @@ def biased_extract_run(params: extract_info_params):
     ## Description
     extracts information from the user
     """
+    """prompt=params.context+"\nGiven the above, extract \""+params.bias+"\" information and note it with a - in front:","""
+    print(params.context+"\nGiven the above, extract \""+params.bias+"\" information and note it with a - in front:")
     gpt_iter = completions_with_backoff(
         model=params.engine,
-        prompt=params.context+"\nGiven the above, extract \""+params.bias+"\" information and note it with a - in front:",
+        prompt=params.context
+        +"\nGiven the above, and the template\n-property:value \n-property:value \n-property:value \netc.\nextract \""
+        +params.bias+"\" information:\n-",
         temperature=0.9,
         max_tokens=150,
         top_p=1,
@@ -168,6 +172,81 @@ def biased_extract_run(params: extract_info_params):
         stream=True
     )
     def iterfile():
+        yield "-"
+        for i in gpt_iter:
+            yield str(i.choices[0].text)
+    return StreamingResponse(iterfile(), media_type="text/plain")
+
+class guided_message_khi_params(BaseModel):
+    context: Union[str,None]="",
+    user_data: Union[str,None]="",
+    KHI: Union[str,None]="Name, Age, Coping Skill",
+    engine: Union[str,None]="text-davinci-003",
+    temperature: Union[float,None] = 0.9
+    max_tokens: Union[int,None] = 250
+    top_p: Union[float,None] = 1
+    frequency_penalty: Union[float,None] = 0
+    presence_penalty: Union[float,None] = 0
+
+def guided_message_khi_run(params: guided_message_khi_params):
+    """
+    ## Description
+    extracts information from the user
+    """
+
+
+    '''Given this KHI [], and [previous conversation], what is a good question to continue a conversation with the human?'''
+    backstory="You are an AI diary named Syrenity, and your goal is to listen and clarify what the human is telling you.  You always care about the human and their health, and are friendly, helpful, accurate, sincere, and can show emotion as their friend."
+    gpt_iter = completions_with_backoff(
+        model=params.engine,
+        
+        prompt="Backstory:\n"+backstory
+        +"\n\nGiven this list of things we want to know about the human: \""+
+        params.KHI+"\", and the conversation: \n\n\""+params.context
+        +"\"\n\nas well as the extracted information:\n\n\""+params.user_data
+        +"\"\n\nWhat is a good question about N/A information?\n\nA good question would be \"",
+        temperature=0.9,
+        max_tokens=150,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0.6,
+        stop=["\""],
+        stream=True
+    )
+    def iterfile():
+        for i in gpt_iter:
+            yield str(i.choices[0].text)
+    return StreamingResponse(iterfile(), media_type="text/plain")
+
+
+class health_analysis_params(BaseModel):
+    context: Union[str,None]="",
+    sensitive_extraction: Union[str,None]="mental disorder",
+    engine: Union[str,None]="text-davinci-003",
+    temperature: Union[float,None] = 0.9
+    max_tokens: Union[int,None] = 250
+    top_p: Union[float,None] = 1
+    frequency_penalty: Union[float,None] = 0
+    presence_penalty: Union[float,None] = 0
+
+def health_analysis_run(params: health_analysis_params):
+    """
+    ## Description
+    extracts information from the user
+    Don't add to conversation, therapist access only
+    """ 
+    gpt_iter = completions_with_backoff(
+        model=params.engine,
+        prompt=params.context+"\nGiven the above, extract \""+params.sensitive_extraction+"\" information and note it with a - in front:\n-",
+        temperature=0.9,
+        max_tokens=150,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0.6,
+        stream=True
+    )
+    def iterfile():
+        yield "-"
         for i in gpt_iter:
             yield str(i.choices[0].text)
     return StreamingResponse(iterfile(), media_type="text/plain")

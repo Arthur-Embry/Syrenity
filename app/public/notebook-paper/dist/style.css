@@ -126,3 +126,7 @@ body {
   overflow: hidden;
   outline: none;
 }
+
+h2,h3{
+  line-height: 25px;
+}
