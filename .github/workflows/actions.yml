@@ -35,6 +35,7 @@ jobs:
     - name: Deploy
       run: |
         gcloud run deploy actions-workflow-manager --image gcr.io/syrenity/syrenity-image \
+        --set-env-vars OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} \
         --platform managed \
         --allow-unauthenticated \
         --memory 512M
