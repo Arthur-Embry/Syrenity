@@ -24,6 +24,7 @@ jobs:
         touch app.env
         echo OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} > app.env
         cat app.env
+        ls
 
     # Configure Docker with Credentials
     - name: Configure Docker
