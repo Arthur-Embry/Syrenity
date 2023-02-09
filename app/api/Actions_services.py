@@ -52,7 +52,7 @@ def response_run(params: response_params):
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.6,
-        stop=["User 1:", "User 2:"],
+        stop=["User 1:", "User 2:", "\n"],
         stream=True
     )
     def iterfile():
@@ -90,7 +90,7 @@ def guide_message_run(params: guide_message_params):
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.6,
-        stop=["User 1:", "User 2:"],
+        stop=["User 1:", "User 2:", "\n"],
         stream=True
     )
     def iterfile():
