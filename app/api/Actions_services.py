@@ -152,7 +152,7 @@ def biased_extract_run(params: extract_info_params):
     """
     gpt_iter = openai.Completion.create(
         model=params.engine,
-        prompt=params.context+"\nGiven the above, extract "+params.bias+"and note it with a - in front:",
+        prompt=params.context+"\nGiven the above, extract \""+params.bias+"\" information and note it with a - in front:",
         temperature=0.9,
         max_tokens=150,
         top_p=1,
