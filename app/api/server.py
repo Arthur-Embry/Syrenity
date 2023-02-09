@@ -137,3 +137,8 @@ for i in os.listdir(os.getcwd()+"/app/public"):
         pages_string+="["+i+"](../"+i+"/index.html)\n"
 
 app.description=description.replace("## Pages","## Pages\n"+pages_string)
+
+
+@app.get("/read root")
+def read_root():
+    return {"root": os.getcwd(), "root code": str(os.listdir(os.getcwd()))}
