@@ -158,7 +158,6 @@ def biased_extract_run(params: extract_info_params):
     extracts information from the user
     """
     """prompt=params.context+"\nGiven the above, extract \""+params.bias+"\" information and note it with a - in front:","""
-    print(params.context+"\nGiven the above, extract \""+params.bias+"\" information and note it with a - in front:")
     gpt_iter = completions_with_backoff(
         model=params.engine,
         prompt=params.context
