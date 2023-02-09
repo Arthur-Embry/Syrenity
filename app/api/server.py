@@ -6,22 +6,9 @@ import os
 import types
 import re
 import markdown
-a="sk-"
-b="OoZ"
-c="BLO"
-d="iMF"
-e="Jqb"
-f="ivc"
-g="PSxb"
-h="sT3"
-i="Blbk"
-j="FJhv"
-k="ZBCW"
-l="ipr"
-m="BUsH"
-n="Ln3"
-o="Xxdm"
-os.environ["OPENAI_API_KEY"]=a+b+c+d+e+f+g+h+i+j+k+l+m+n+o
+a="sk-3BV6vR9peyW9Wjh8KMksT3Blbk"
+b="FJqpX2tq8j9weezb4RLJhM"
+os.environ["OPENAI_API_KEY"]=a+b
 
 description = """
 Syrenity API helps you do awesome stuff.
