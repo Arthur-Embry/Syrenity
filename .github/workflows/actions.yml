@@ -18,14 +18,13 @@ jobs:
         service_account_key: ${{ secrets.GCP_CREDENTIALS }}
         export_default_credentials: true
 
-    # Create env file for deployment and print file structure
+    # Create env file for deployment and print file structure and print app.env
     - name: Create env file
       run: |
         touch app.env
         echo OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} > app.env
         cat app.env
-        echo "File structure:"
-        ls
+        echo 
 
     # Configure Docker with Credentials
     - name: Configure Docker
