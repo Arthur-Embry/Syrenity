@@ -25,10 +25,10 @@ jobs:
 
     # Create env file for deployment
     - name: Create env file
-        run: |
-          touch app.env
-          echo OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} >> app.env
-          cat app.env
+      run: |
+        touch app.env
+        echo OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} >> app.env
+        cat app.env
 
     # Build the Docker image
     - name: Build & Publish
