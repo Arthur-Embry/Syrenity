@@ -28,8 +28,9 @@ jobs:
       run: |
         gcloud config set project syrenity
         # Use a different variable for the image name
-        gcloud builds submit --tag gcr.io/syrenity/syrenity-image \
-        --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+        docker build -t gcr.io/syrenity/syrenity-image --build-arg OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} .
+        gcloud auth configure-docker
+        docker push gcr.io/syrenity/syrenity-image
         gcloud config set run/region us-central1
       
     # Deploy the Docker image to the GKE cluster
