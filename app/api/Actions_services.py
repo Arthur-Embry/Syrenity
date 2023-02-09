@@ -84,13 +84,13 @@ def guide_message_run(params: guide_message_params):
     gpt_iter = completions_with_backoff(
         model=params.engine,
         prompt="""The following is a conversation with an assistant. The assistant is helpful, creative, clever, and very friendly.
-        \n"""+prompt+"\nresponse subject: "+params.guidance+"\n"+params.current_user,
+        \n"""+prompt+"\nresponse subject: "+params.guidance+"\n"+"Therapist: ",
         temperature=0.9,
         max_tokens=150,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.6,
-        stop=["User 1:", "User 2:", "\n"],
+        stop=["User 1:", "User 2:", "\n", "Therapist:"],
         stream=True
     )
     def iterfile():
