@@ -20,7 +20,7 @@ document.querySelector(".submit-button").addEventListener("click", async functio
     document.querySelector('.paper-1 .text').innerText+="\n\n"+res
 
     res= await health_analysis({context: text})
-    document.querySelector('.paper-2 .text').innerHTML+="<h2>Sensitive data:</h2>"
+    document.querySelector('.paper-2 .text').innerHTML+="<h3>Sensitive data:</h3>"
     document.querySelector('.paper-2 .text').innerHTML+="<p>"+res+"</p>"
 
 });
