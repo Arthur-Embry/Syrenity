@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./app /code/app
 
 # mount .app.env on code file
-COPY ./.app.env /code/.app.env
+COPY ./app.env /code/app.env
 
 # run the app (uvicorn)
 CMD ["uvicorn", "app.api.server:app","--reload", "--host", "0.0.0.0", "--port", "8080"]
