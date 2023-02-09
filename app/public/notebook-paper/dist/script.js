@@ -1,8 +1,7 @@
 console.log("ping");
 // on click button with class "submit-button" run function
 document.querySelector(".submit-button").addEventListener("click", async function() {
-
-
+    
     var text = document.querySelector('.paper-1 .text').innerText;
     res = await extract_info({context: text})
     document.querySelector('.paper-2 .text').innerHTML=""
