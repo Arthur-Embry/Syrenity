@@ -13,5 +13,10 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 # mount the app on code file
 COPY ./app /code/app
 
+
+ARG OPENAI_API_KEY
+ENV OPENAI_API_KEY=$OPENAI_API_KEY
+
+
 # run the app (uvicorn)
 CMD ["uvicorn", "app.api.server:app","--reload", "--host", "0.0.0.0", "--port", "8080"]
