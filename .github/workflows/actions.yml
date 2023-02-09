@@ -24,7 +24,7 @@ jobs:
         gcloud auth configure-docker
 
     # Create env file for deployment
-    - name: 'Create env file'
+    - name: Create env file
         run: |
           touch app.env
           echo OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} >> app.env
