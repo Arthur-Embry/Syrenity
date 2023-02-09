@@ -45,14 +45,14 @@ def response_run(params: response_params):
         prompt += i+"\n"
     gpt_iter = completions_with_backoff(
         model="text-davinci-003",
-        prompt="""The following is a conversation with an assistant. The assistant is helpful, creative, clever, and very friendly.
-        \n"""+prompt+params.current_user,
+        prompt="""The following is a conversation with an AI diary named Syrenity, whos goal is to listen and clarify what the human is telling you. The diary cares about the human and their health, and is friendly, helpful, accurate, sincere, and can show emotion as their friend.
+        \n"""+prompt+"Syrenity: ",
         temperature=0.9,
         max_tokens=150,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.6,
-        stop=["User 1:", "User 2:", "\n"],
+        stop=["User 1:", "User 2:", "Syrenity:"],
         stream=True
     )
     def iterfile():
@@ -83,14 +83,15 @@ def guide_message_run(params: guide_message_params):
         prompt += i+"\n"
     gpt_iter = completions_with_backoff(
         model=params.engine,
-        prompt="""The following is a conversation with an assistant. The assistant is helpful, creative, clever, and very friendly.
-        \n"""+prompt+"\nresponse subject: "+params.guidance+"\n"+"Therapist: ",
+        prompt="""
+        The following is a conversation with an AI diary named Syrenity, whos goal is to listen and clarify what the human is telling you. The diary cares about the human and their health, and is friendly, helpful, accurate, sincere, and can show emotion as their friend.
+        \n"""+prompt+"\nresponse subject: "+params.guidance+"\n"+"Syrenity: ",
         temperature=0.9,
         max_tokens=150,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0.6,
-        stop=["User 1:", "User 2:", "\n", "Therapist:"],
+        stop=["User 1:", "User 2:", "Syrenity:"],
         stream=True
     )
     def iterfile():
