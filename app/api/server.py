@@ -20,15 +20,12 @@ An API can be a great way to give users access to the deep learning powered diar
 
 ## Pages
 
-[notebook-paper](../notebook-paper/index.html)
-
-
 # Restfull Endpoints
 """
 
 app = FastAPI(
     title="Syrenity",
-    description=description,
+
 )
 
 
@@ -113,6 +110,24 @@ def remap(path, new_path):
 
 
 
+#find all files in os.getcwd() app/api
+for i in os.listdir(os.getcwd()+"/app/public"):
+    #check if dist folder in i
+    if "dist" in os.listdir(os.getcwd()+"/app/public/"+i):
+        #add static folder to app
+        app.mount("/"+i, StaticFiles(directory=os.getcwd()+"/app/public/"+i+"/dist"), name=i)
+
+#app.mount("/notebook-paper", StaticFiles(directory="app/public/notebook-paper/dist"), name="static")
 
 
-app.mount("/notebook-paper", StaticFiles(directory="app/public/notebook-paper/dist"), name="static")
+#[notebook-paper](../notebook-paper/index.html)
+pages_string=""
+#find all files in os.getcwd() app/api
+for i in os.listdir(os.getcwd()+"/app/public"):
+    #check if dist folder in i
+    if "dist" in os.listdir(os.getcwd()+"/app/public/"+i):
+        #add static folder to app
+        app.mount("/"+i, StaticFiles(directory=os.getcwd()+"/app/public/"+i+"/dist"), name=i)
+        pages_string+="["+i+"](../"+i+"/index.html)\n"
+
+app.description=description.replace("## Pages","## Pages\n"+pages_string)
