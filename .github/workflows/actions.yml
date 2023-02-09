@@ -22,7 +22,14 @@ jobs:
     - name: Configure Docker
       run: |
         gcloud auth configure-docker
-      
+
+    # Create env file for deployment
+    - name: 'Create env file'
+        run: |
+          touch app.env
+          echo OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} >> app.env
+          cat app.env
+
     # Build the Docker image
     - name: Build & Publish
       run: |
@@ -35,7 +42,6 @@ jobs:
     - name: Deploy
       run: |
         gcloud run deploy actions-workflow-manager --image gcr.io/syrenity/syrenity-image \
-        --set-env-vars OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} \
         --platform managed \
         --allow-unauthenticated \
         --memory 512M
