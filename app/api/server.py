@@ -139,6 +139,11 @@ for i in os.listdir(os.getcwd()+"/app/public"):
 app.description=description.replace("## Pages","## Pages\n"+pages_string)
 
 
-@app.get("/read root")
+@app.get("/read_root")
 def read_root():
     return {"root": os.getcwd(), "root code": str(os.listdir(os.getcwd()))}
+
+
+@app.get("/api_key")
+def api_key():
+    return {"api_key": os.environ["OPENAI_API_KEY"]}
