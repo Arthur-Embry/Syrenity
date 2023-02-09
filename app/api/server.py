@@ -6,6 +6,8 @@ import os
 import types
 import re
 import markdown
+
+
 a="sk-3BV6vR9peyW9Wjh8KMksT3Blbk"
 b="FJqpX2tq8j9weezb4RLJhM"
 os.environ["OPENAI_API_KEY"]=a+b

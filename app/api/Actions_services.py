@@ -3,6 +3,12 @@ from typing import Union, List
 from pydantic import BaseModel
 import openai
 import os
+import backoff
+
+@backoff.on_exception(backoff.expo, openai.error.RateLimitError)
+def completions_with_backoff(**kwargs):
+    return openai.Completion.create(**kwargs)
+
 
 #set env variable of api key
 openai.api_key = os.environ["OPENAI_API_KEY"]
@@ -37,7 +43,7 @@ def response_run(params: response_params):
     prompt = ""
     for i in params.chat_log:
         prompt += i+"\n"
-    gpt_iter = openai.Completion.create(
+    gpt_iter = completions_with_backoff(
         model="text-davinci-003",
         prompt="""The following is a conversation with an assistant. The assistant is helpful, creative, clever, and very friendly.
         \n"""+prompt+params.current_user,
@@ -75,7 +81,7 @@ def guide_message_run(params: guide_message_params):
     prompt = ""
     for i in params.chat_log:
         prompt += i+"\n"
-    gpt_iter = openai.Completion.create(
+    gpt_iter = completions_with_backoff(
         model=params.engine,
         prompt="""The following is a conversation with an assistant. The assistant is helpful, creative, clever, and very friendly.
         \n"""+prompt+"\nresponse subject: "+params.guidance+"\n"+params.current_user,
@@ -119,7 +125,7 @@ def extract_info_run(params: extract_info_params):
     ## Description
     extracts information from the user
     """
-    gpt_iter = openai.Completion.create(
+    gpt_iter = completions_with_backoff(
         model=params.engine,
         prompt=params.context+"\nGiven the above, extract a few key notes relevant to a therapist, and use dashes for each note:",
         temperature=0.9,
@@ -150,7 +156,7 @@ def biased_extract_run(params: extract_info_params):
     ## Description
     extracts information from the user
     """
-    gpt_iter = openai.Completion.create(
+    gpt_iter = completions_with_backoff(
         model=params.engine,
         prompt=params.context+"\nGiven the above, extract \""+params.bias+"\" information and note it with a - in front:",
         temperature=0.9,

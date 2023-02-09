@@ -4,6 +4,11 @@ from pydantic import BaseModel
 import openai
 import os
 import requests
+import backoff
+
+@backoff.on_exception(backoff.expo, openai.error.RateLimitError)
+def completions_with_backoff(**kwargs):
+    return openai.Completion.create(**kwargs)
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
