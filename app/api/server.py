@@ -6,7 +6,7 @@ import os
 import types
 import re
 import markdown
-os.environ["OPENAI_API_KEY"]="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"
+os.environ["OPENAI_API_KEY"]="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"
 
 description = """
 Syrenity API helps you do awesome stuff.
@@ -48,7 +48,6 @@ def expose(endpoint,service):
 
     # Decorate it with your decorator and then pass it to FastAPI
     def template(item: function_params):
-        """TODO: add comments to this function"""
         #catch special case of default parameters changing from string to tuple
         for i in item:
             if type(i[1])==tuple:

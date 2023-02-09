@@ -135,4 +135,32 @@ def extract_info_run(params: extract_info_params):
     return StreamingResponse(iterfile(), media_type="text/plain")
     
 
-    
+class biased_extract_params(BaseModel):
+    bias: Union[str,None]="",
+    context: Union[str,None]="",
+    engine: Union[str,None]="text-davinci-003",
+    temperature: Union[float,None] = 0.9
+    max_tokens: Union[int,None] = 250
+    top_p: Union[float,None] = 1
+    frequency_penalty: Union[float,None] = 0
+    presence_penalty: Union[float,None] = 0
+
+def biased_extract_run(params: extract_info_params):
+    """
+    ## Description
+    extracts information from the user
+    """
+    gpt_iter = openai.Completion.create(
+        model=params.engine,
+        prompt=params.context+"\nGiven the above, extract "+params.bias+"and note it with a - in front:",
+        temperature=0.9,
+        max_tokens=150,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0.6,
+        stream=True
+    )
+    def iterfile():
+        for i in gpt_iter:
+            yield str(i.choices[0].text)
+    return StreamingResponse(iterfile(), media_type="text/plain")
