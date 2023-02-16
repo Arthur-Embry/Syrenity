@@ -249,3 +249,33 @@ def health_analysis_run(params: health_analysis_params):
         for i in gpt_iter:
             yield str(i.choices[0].text)
     return StreamingResponse(iterfile(), media_type="text/plain")
+
+
+class end_message_params(BaseModel):
+    context: Union[str,None]="",
+    engine: Union[str,None]="text-davinci-003",
+    temperature: Union[float,None] = 0.9
+    max_tokens: Union[int,None] = 250
+    top_p: Union[float,None] = 1
+    frequency_penalty: Union[float,None] = 0
+    presence_penalty: Union[float,None] = 0
+
+def end_message_run(params: end_message_params):
+    """
+    ## Description
+    says goodbye to the user
+    """
+    gpt_iter = completions_with_backoff(
+        model=params.engine,
+        prompt=params.context+"\nGiven the above, say goodbye to the human:",
+        temperature=0.9,
+        max_tokens=150,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0.6,
+        stream=True
+    )
+    def iterfile():
+        for i in gpt_iter:
+            yield str(i.choices[0].text)
+    return StreamingResponse(iterfile(), media_type="text/plain")
