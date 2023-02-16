@@ -27,8 +27,7 @@ while read -r line; do
 done < app.env
 
 #remove the last character from the string
-string="${string%?}"
-
+string = ${string%?}
 #set secret to the string
 gh secret set APP_ENV -b "$string" &> /dev/null
 
