@@ -22,6 +22,9 @@ string=$(echo "$string" | tr '\n' ',')
 # remove the last comma
 string=${string%?}
 
+# append ^##^ to the beginning of the string
+string="^##^$string"
+
 # replace all commas with newlines
 # output the string
 echo "$string"
