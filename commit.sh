@@ -12,25 +12,14 @@ fi
 # remove all empty lines from app.env
 sed -i '/^$/d' app.env
 
-#add one empty line to the end of app.env
-echo "" >> app.env
+#read all lines of app.env into an array
+mapfile -t lines < app.env
 
-#set string to empty
-string=""
-
-#read all lines from app.env
-while read -r line; do
-  #set the string to the line
-  string_temp="$line"
-  #append the string to the string with a ,
-  string="$string$string_temp,"
-done < app.env
+#concatenate all lines into a single string with , as delimiter
+string=$(IFS=,; echo "${lines[*]}")
 
 #set secret to the string
 gh secret set APP_ENV -b "$string" &> /dev/null
-
-#print the string
-echo $string
 
 # Add all changes to the Git index
 git add .
