@@ -12,11 +12,18 @@ fi
 # remove all empty lines from app.env
 sed -i '/^$/d' app.env
 
-#read all lines of app.env into an array
-string= $(cut -d '=' -f1 app.env) 
+#set string to empty
+string=""
 
-#concatenate all lines into a single string with , as a separator
-string=$(printf "%s," "${lines[@]}")
+#read all lines from app.env
+while read -r line; do
+  #set the string to the line
+  string_temp="$line"
+  #append the string to the string with a ,
+  string="$string$string_temp,"
+done < app.env
+
+
 
 #set secret to the string
 gh secret set APP_ENV -b "$string" &> /dev/null
