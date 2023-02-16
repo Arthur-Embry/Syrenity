@@ -18,6 +18,10 @@ string=$(cat app.env)
 
 # replace all newlines with commas
 string=$(echo "$string" | tr '\n' ',')
+
+# remove the last comma
+string=${string%?}
+
 # output the string
 echo "$string"
 
