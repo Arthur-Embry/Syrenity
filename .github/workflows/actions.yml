@@ -34,7 +34,7 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
-        gcloud run deploy actions-workflow-manager --image gcr.io/syrenity/syrenity-image -update-env-vars ${{ secrets.APP_ENV }} \
+        gcloud run deploy actions-workflow-manager --image gcr.io/syrenity/syrenity-image --update-env-vars ${{ secrets.APP_ENV }} \
         --platform managed \
         --allow-unauthenticated \
         --memory 512M
