@@ -12,6 +12,9 @@ fi
 # remove all empty lines from app.env
 sed -i '/^$/d' app.env
 
+#add one empty line to the end of app.env
+echo "" >> app.env
+
 #set string to empty
 string=""
 
