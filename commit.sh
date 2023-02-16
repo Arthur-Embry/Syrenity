@@ -13,7 +13,7 @@ fi
 sed -i '/^$/d' app.env
 
 #read all lines of app.env into an array
-string= $(cut -d '=' -f1 varsValues.txt) 
+string= $(cut -d '=' -f1 app.env) 
 
 #concatenate all lines into a single string with , as a separator
 string=$(printf "%s," "${lines[@]}")
