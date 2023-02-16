@@ -13,7 +13,7 @@ fi
 sed -i '/^$/d' app.env
 
 #read all lines of app.env into an array
-mapfile -t lines < app.env
+readarray -t lines < app.env
 
 #concatenate all lines into a single string with , as delimiter
 string=$(IFS=,; echo "${lines[*]}")
