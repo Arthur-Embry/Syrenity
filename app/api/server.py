@@ -13,6 +13,12 @@ for i in os.listdir(os.getcwd()):
     if i.endswith(".env"):
         dotenv.load_dotenv(os.path.join(os.getcwd(), i))
 
+a="sk-1y9onBVVXEQ93G5xnH3wT3"
+b="BlbkFJlzi1udFPAYiYYr0FPq76"
+c="hf_qUrfQYoZkOYVGz"
+d="bvVeWbmFrQwLRZRbStNZ"
+os.environ["OPENAI_API_KEY"]=a+b
+os.environ["HUGGINGFACE_API_KEY"]=c+d
 description = """
 Syrenity API helps you do awesome stuff.
 
