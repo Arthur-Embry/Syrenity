@@ -16,20 +16,8 @@ sed -i '/^$/d' app.env
 # read the file into a string
 string=$(cat app.env)
 
-
-# set the delimiter to a newline character
-IFS=$'\n'
-
-# use command substitution to insert the string into the array
-array=$(echo "$string")
-
-# restore the default IFS value
-unset IFS
-
-#concatenate the array into a string with , as a separator
-string=$(printf ",%s" "${array[@]}")
-
-
+# replace all newlines with commas
+string=$(echo "$string" | tr '' ',')
 # output the string
 echo "$string"
 
