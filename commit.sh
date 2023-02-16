@@ -17,11 +17,12 @@ sed -i '/^$/d' app.env
 string=$(cat app.env)
 
 # replace all newlines with commas
-string=$(echo "$string" | tr '\n' ' --update-env-vars ')
+string=$(echo "$string" | tr '\n' ',')
 
 # remove the last comma
 string=${string%?}
 
+# replace all commas with newlines
 # output the string
 echo "$string"
 
