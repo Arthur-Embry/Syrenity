@@ -102,9 +102,9 @@ body {
 .extraction-bias {
   z-index: 3;
   position: absolute;
-  width: 300px;
+  width: 250px;
   top: calc( 50% + 225px );
-  right: calc(30% - 600px);
+  right: calc(30% - 475px);
   transform: translateX(-120%);
   padding: 10px 20px;
   background-color: white;

@@ -22,4 +22,8 @@ document.querySelector(".submit-button").addEventListener("click", async functio
     document.querySelector('.paper-2 .text').innerHTML+="<h3>Sensitive data:</h3>"
     document.querySelector('.paper-2 .text').innerHTML+="<p>"+res+"</p>"
 
+    res =  await end_classification({chat_history: [text]})
+    console.log(res)
+
+    console.log("pong")
 });

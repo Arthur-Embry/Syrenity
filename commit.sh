@@ -9,6 +9,18 @@ if [ -z "$message" ]; then
   exit 1
 fi
 
+# remove all empty lines from app.env
+sed -i '/^$/d' app.env
+
+#read all lines of app.env into an array
+mapfile -t lines < app.env
+
+#concatenate all lines into a single string with , as delimiter
+string=$(IFS=,; echo "${lines[*]}")
+
+#set secret to the string
+gh secret set APP_ENV -b "$string" &> /dev/null
+
 # Add all changes to the Git index
 git add .
 

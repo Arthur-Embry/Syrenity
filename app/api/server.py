@@ -19,6 +19,14 @@ Syrenity API helps you do awesome stuff.
 ## Notes
 An API can be a great way to give users access to the deep learning powered diary program. This API can provide users with the ability to access the program from any location. Additionally, the API will allow users to easily integrate the diary program into their existing applications or websites. This can be especially useful for applications or websites that are already using deep learning, as the API will enable easier integration. With the API in place, users can quickly start building their own applications and websites with the diary program and its deep learning powered features.
 
+## Static Endpoints
+Note that while the standard endpoints may return a stream, the static endpoints always return a promise. This is because the static endpoints are designed to be used in a browser, while the standard endpoints are designed in the case of entirely server-side functions for more stable and simple integration.
+
+To access a static endpoint, simply add the prefix /static to the beggining of the url
+
+eg. if post to foo is localhost:3000/foo
+then static binding is at localhost:3000/static/foo
+
 ## Pages
 
 # Restfull Endpoints
@@ -87,7 +95,7 @@ def expose(endpoint,service):
     globals()[endpoint+"_static_global"] = types.FunctionType(template_static.__code__, {}, name=template_static.__name__, argdefs=template_static.__defaults__, closure=template_static.__closure__)
     globals()[endpoint+"_static_global"].__name__ = service + " - " + endpoint + " static"
     globals()[endpoint+"_static_global"].__annotations__ = {"item": function_params}
-    app.post("/static/"+endpoint)(globals()[endpoint+"_static_global"])
+    app.post("/static/"+endpoint, include_in_schema=False)(globals()[endpoint+"_static_global"])
 
 #find all files in os.getcwd() app/api
 for i in os.listdir(os.getcwd()+"/app/api"):
