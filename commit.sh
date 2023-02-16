@@ -17,7 +17,7 @@ sed -i '/^$/d' app.env
 string=$(cat app.env)
 
 # replace all newlines with commas
-string=$(echo "$string" | tr '' ',')
+string=$(echo "$string" | tr '\n' ',')
 # output the string
 echo "$string"
 
