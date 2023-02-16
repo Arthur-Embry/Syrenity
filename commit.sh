@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# import readarray
+shopt -s extglob
+
 # Take the commit message as an argument
 message="$1"
 
