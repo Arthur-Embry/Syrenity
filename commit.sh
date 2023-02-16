@@ -15,14 +15,14 @@ sed -i '/^$/d' app.env
 #read all lines of app.env into an array
 mapfile -t lines < app.env
 
-#concatenate all lines into a single string with @ as delimiter
-string=$(printf "%s@" "${lines[@]}")
-
-#append ^@^ to the string
-string="$string^@^"
+#concatenate all lines into a single string with , as a separator
+string=$(printf "%s," "${lines[@]}")
 
 #set secret to the string
 gh secret set APP_ENV -b "$string" &> /dev/null
+
+#print the string
+echo $string
 
 # Add all changes to the Git index
 git add .
