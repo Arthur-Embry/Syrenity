@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# import readarray
-shopt -s extglob
-
 # Take the commit message as an argument
 message="$1"
 
@@ -15,11 +12,12 @@ fi
 # remove all empty lines from app.env
 sed -i '/^$/d' app.env
 
-#read all lines of app.env into an array
-readarray -t lines < app.env
 
-#concatenate all lines into a single string with , as delimiter
-string=$(IFS=,; echo "${lines[*]}")
+# read the file into a string
+string=$(cat app.env)
+
+# output the string
+echo "$string"
 
 #set secret to the string
 gh secret set APP_ENV -b "$string" &> /dev/null
