@@ -13,7 +13,7 @@ fi
 sed -i '/^$/d' app.env
 
 #read all lines of app.env into an array
-IFS=$'' read -d '' -r -a lines < app.env
+readarray -t string < app.env
 
 #concatenate all lines into a single string with , as a separator
 string=$(printf "%s," "${lines[@]}")
