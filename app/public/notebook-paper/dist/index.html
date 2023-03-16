@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Notebook Paper</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="./slider.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="paper-1">
+  <div class="title">Diary</div>
+  <div class="lines">
+    <div class="text" contenteditable spellcheck="false">
+      Entry 2/6/23<br /><br />
+      Today was a difficult day. I felt overwhelmed and like I couldn't handle anything. I was able to get out of bed, but I struggled to focus on anything. I felt like my thoughts were in a fog and I just wanted to crawl back into bed and sleep. I'm trying my best to stay positive and remember that this won't last forever, but it's hard.  </div>
+  </div>
+  <div class="holes hole-top"></div>
+  <div class="holes hole-middle"></div>
+  <div class="holes hole-bottom"></div>
+</div>
+
+<div class="paper-2">
+  <div class="title">Notes</div>
+  <div class="lines">
+    <div class="text" contenteditable spellcheck="false">
+      Notes go here <br /><br />
+      After clicking submit, see data extracted in real time through a GPT backpropogation cascaded with an MNLI</div>
+  </div>
+  <div class="holes hole-top"></div>
+  <div class="holes hole-middle"></div>
+  <div class="holes hole-bottom"></div>
+</div>
+<!-- Rounded switch -->
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+<input type="text" value="Name, Age, Coping Skill" class="extraction-bias" placeholder="Extraction context"></input>
+
+
+
+
+  <button class="submit-button">Submit</button>
+  <!--input type="text" value="query about name" class="submit-bias" placeholder="Question context"></input-->
+<!-- partial -->
+  <script  src="./streaminggpt.js"></script>
+  <script  src="./script.js"></script>
+</body>
+</html>

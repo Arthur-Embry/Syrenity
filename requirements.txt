@@ -1,0 +1,7 @@
+fastapi
+typing
+uvicorn
+markdown
+openai
+backoff
+python-dotenv
