@@ -64,7 +64,7 @@ document.querySelector(".submit-button").addEventListener("click", async functio
         document.querySelector('.paper-1 .text').innerHTML+="\n\n"+res
     }else{
         //uses the guided message khi function to get the user response from the server
-        res = await guided_message_khi({context: text,user_data:res})
+        res = await guided_message_khi({context: text,user_data:res,KHI:extract_bias})
         document.querySelector('.paper-1 .text').innerHTML+="\n\n"+res
     }
 
