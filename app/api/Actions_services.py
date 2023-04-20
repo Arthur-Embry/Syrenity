@@ -179,7 +179,7 @@ def biased_extract_run(params: extract_info_params):
 class guided_message_khi_params(BaseModel):
     context: Union[str,None]="",
     user_data: Union[str,None]="",
-    KHI: Union[str,None]="Name, Age, Coping Skill",
+    KHI: Union[str,None]="",
     engine: Union[str,None]="text-davinci-003",
     temperature: Union[float,None] = 0.9
     max_tokens: Union[int,None] = 250
