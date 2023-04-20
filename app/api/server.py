@@ -12,7 +12,7 @@ import dotenv
 for i in os.listdir(os.getcwd()):
     if i.endswith(".env"):
         dotenv.load_dotenv(os.path.join(os.getcwd(), i))
-
+#ping
 a="sk-DdYkhJi7WaTwZAmDem"
 b="VXT3BlbkFJzibI89cXtoM4R63eGUd4"
 c="hf_qUrfQYoZkOYVGz"
